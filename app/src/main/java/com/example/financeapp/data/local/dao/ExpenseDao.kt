@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.financeapp.domain.model.CategoryTotal
 import com.example.financeapp.domain.model.Expense
 import com.example.financeapp.domain.model.ExpenseCategory
 import kotlinx.coroutines.flow.Flow
@@ -46,4 +47,12 @@ interface ExpenseDao {
         startDate: Long,
         endDate: Long
     ): Flow<Double?>
+
+    // Returns total spent grouped by category for a given period — used by BudgetViewModel
+    @Query("SELECT category, SUM(amount) as total FROM expenses WHERE userId = :userId AND date BETWEEN :startDate AND :endDate GROUP BY category")
+    fun getTotalsByCategoryForMonth(
+        userId: Long,
+        startDate: Long,
+        endDate: Long
+    ): Flow<List<CategoryTotal>>
 }
