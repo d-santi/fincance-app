@@ -12,7 +12,7 @@ data class SharedExpense(
     val totalAmount: Double,
     val category: ExpenseCategory,
     val settled: Boolean = false,
-    val participants: String,
+    val participants: List<Participant>,
     val createdAt: Long = System.currentTimeMillis()
 )
 
