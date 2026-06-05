@@ -11,18 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import com.example.financeapp.R
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.financeapp.ui.navigation.Screen
 
 private enum class BottomNavItem(
     val screen: Screen,
-    val label: String,
+    val labelRes: Int,
     val icon: ImageVector
 ) {
-    EXPENSES(Screen.ExpenseList, "Gastos", Icons.Outlined.Receipt),
-    BUDGET(Screen.BudgetList, "Presupuesto", Icons.Outlined.AccountBalance),
-    SHARED(Screen.SharedExpenseList, "Compartidos", Icons.Outlined.Group)
+    EXPENSES(Screen.ExpenseList, R.string.nav_expenses, Icons.Outlined.Receipt),
+    BUDGET(Screen.BudgetList, R.string.nav_budget, Icons.Outlined.AccountBalance),
+    SHARED(Screen.SharedExpenseList, R.string.nav_shared, Icons.Outlined.Group)
 }
 
 @Composable
@@ -42,8 +44,10 @@ fun AppBottomBar(navController: NavController) {
                         restoreState = true
                     }
                 },
-                icon = { Icon(item.icon, contentDescription = item.label) },
-                label = { Text(item.label) }
+                icon = {
+                    Icon(item.icon, contentDescription = stringResource(item.labelRes))
+                },
+                label = { Text(stringResource(item.labelRes)) }
             )
         }
     }
