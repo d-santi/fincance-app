@@ -1,3 +1,117 @@
 <resources>
-    <string name="app_name">FinanceApp</string>
+    <string name="app_name">Finance</string>
+
+    <!-- Auth -->
+    <string name="login_title">Iniciar sesión</string>
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_action">Registrarse</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="name">Nombre</string>
+    <string name="login_action">Entrar</string>
+    <string name="password_hint">Mínimo 6 caracteres</string>
+    <string name="auth_tagline">Controla tus gastos con claridad</string>
+
+    <!-- Navigation -->
+    <string name="nav_expenses">Gastos</string>
+    <string name="nav_budget">Presupuesto</string>
+    <string name="nav_shared">Compartidos</string>
+    <string name="logout">Cerrar sesión</string>
+
+    <!-- Expenses -->
+    <string name="expenses_title">Gastos</string>
+    <string name="expense_new">Nuevo gasto</string>
+    <string name="expense_edit">Editar gasto</string>
+    <string name="total_this_month">Total este mes</string>
+    <string name="description">Descripción</string>
+    <string name="amount">Monto</string>
+    <string name="category">Categoría</string>
+    <string name="date">Fecha</string>
+    <string name="recurring">Gasto recurrente</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm_delete_expense">¿Eliminar este gasto?</string>
+    <string name="add_expense">Agregar gasto</string>
+    <string name="empty_expenses_title">Sin gastos</string>
+    <string name="empty_expenses_subtitle">Registra tu primer gasto con el botón +</string>
+    <string name="filter_all">Todos</string>
+    <string name="filter_recurring">Recurrentes</string>
+    <string name="filter_category">Categoría</string>
+    <string name="filter_date_range">Rango</string>
+    <string name="select_category">Elegir categoría</string>
+    <string name="select_date_range">Elegir rango de fechas</string>
+    <string name="from_date">Desde</string>
+    <string name="to_date">Hasta</string>
+    <string name="apply">Aplicar</string>
+    <string name="expense_saved">Gasto guardado</string>
+    <string name="expense_deleted">Gasto eliminado</string>
+    <string name="back">Regresar</string>
+
+    <!-- Budget -->
+    <string name="budget_title">Presupuesto</string>
+    <string name="budget_new">Nuevo presupuesto</string>
+    <string name="budget_edit">Editar presupuesto</string>
+    <string name="monthly_limit">Límite mensual</string>
+    <string name="spent">Gastado</string>
+    <string name="remaining">Restante</string>
+    <string name="over_budget">Excedido</string>
+    <string name="add_budget">Agregar presupuesto</string>
+    <string name="empty_budget_title">Sin presupuestos</string>
+    <string name="empty_budget_subtitle">Define un límite por categoría para este mes</string>
+    <string name="confirm_delete_budget">¿Eliminar este presupuesto?</string>
+    <string name="budget_saved">Presupuesto guardado</string>
+    <string name="budget_deleted">Presupuesto eliminado</string>
+    <string name="previous_month">Mes anterior</string>
+    <string name="next_month">Mes siguiente</string>
+
+    <!-- Shared -->
+    <string name="shared_title">Compartidos</string>
+    <string name="shared_new">Nuevo gasto compartido</string>
+    <string name="shared_edit">Editar gasto compartido</string>
+    <string name="total_amount">Monto total</string>
+    <string name="participants">Participantes</string>
+    <string name="participant_name">Nombre</string>
+    <string name="participant_amount">Monto</string>
+    <string name="paid">Pagado</string>
+    <string name="add_participant">Agregar participante</string>
+    <string name="remove_participant">Quitar</string>
+    <string name="settle">Liquidar</string>
+    <string name="settled">Liquidado</string>
+    <string name="pending">Pendiente</string>
+    <string name="filter_unsettled">Pendientes</string>
+    <string name="add_shared">Agregar compartido</string>
+    <string name="empty_shared_title">Sin gastos compartidos</string>
+    <string name="empty_shared_subtitle">Divide un gasto entre varias personas</string>
+    <string name="empty_shared_unsettled_title">Todo liquidado</string>
+    <string name="empty_shared_unsettled_subtitle">No hay gastos pendientes por cobrar</string>
+    <string name="confirm_delete_shared">¿Eliminar este gasto compartido?</string>
+    <string name="shared_saved">Gasto compartido guardado</string>
+    <string name="shared_deleted">Gasto compartido eliminado</string>
+    <string name="shared_settled">Marcado como liquidado</string>
+
+    <!-- Auth errors -->
+    <string name="error_empty_fields">Completa todos los campos</string>
+    <string name="error_invalid_email">Correo no válido</string>
+    <string name="error_weak_password">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_invalid_credentials">Correo o contraseña incorrectos</string>
+    <string name="error_email_exists">Este correo ya está registrado</string>
+    <string name="error_unknown">Ocurrió un error. Intenta de nuevo</string>
+
+    <!-- Expense form errors -->
+    <string name="error_empty_description">Ingresa una descripción</string>
+    <string name="error_invalid_amount">Ingresa un monto válido mayor a 0</string>
+    <string name="error_amount_too_high">El monto es demasiado alto</string>
+
+    <!-- Budget form errors -->
+    <string name="error_empty_limit">Ingresa un límite</string>
+    <string name="error_invalid_limit">Ingresa un límite válido mayor a 0</string>
+    <string name="error_limit_too_high">El límite es demasiado alto</string>
+
+    <!-- Shared form errors -->
+    <string name="error_invalid_total">Ingresa un monto total válido</string>
+    <string name="error_not_enough_participants">Se requieren al menos 2 participantes</string>
+    <string name="error_empty_participant_name">Todos los participantes necesitan nombre</string>
+    <string name="error_invalid_participant_amount">Revisa los montos de los participantes</string>
+    <string name="error_amounts_mismatch">La suma de participantes debe igualar el total</string>
 </resources>
