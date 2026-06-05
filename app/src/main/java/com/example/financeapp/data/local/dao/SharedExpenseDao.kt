@@ -21,6 +21,9 @@ interface SharedExpenseDao {
     @Delete
     suspend fun delete(sharedExpense: SharedExpense)
 
+    @Query("SELECT * FROM shared_expenses WHERE id = :id AND userId = :userId LIMIT 1")
+    suspend fun getById(id: Long, userId: Long): SharedExpense?
+
     @Query("SELECT * FROM shared_expenses WHERE userId = :userId ORDER BY createdAt DESC")
     fun getAllByUser(userId: Long): Flow<List<SharedExpense>>
 

@@ -23,6 +23,9 @@ interface BudgetDao {
     suspend fun delete(budget: Budget)
 
     // All budgets the user set for a given month/year
+    @Query("SELECT * FROM budget WHERE id = :id AND userId = :userId LIMIT 1")
+    suspend fun getById(id: Long, userId: Long): Budget?
+
     @Query("SELECT * FROM budget WHERE userId = :userId AND month = :month AND year = :year")
     fun getByMonth(userId: Long, month: Int, year: Int): Flow<List<Budget>>
 
