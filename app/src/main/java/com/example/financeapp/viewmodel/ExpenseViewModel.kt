@@ -96,6 +96,13 @@ class ExpenseViewModel(
         }
     }
 
+    fun loadExpenseForEdit(id: Long) {
+        if (id == 0L) return
+        viewModelScope.launch {
+            expenseDao.getById(id, userId)?.let { loadExpenseForEdit(it) }
+        }
+    }
+
     fun updateDescription(value: String) = _formState.update { it.copy(description = value, error = null) }
     fun updateAmount(value: String) = _formState.update { it.copy(amount = value, error = null) }
     fun updateCategory(value: ExpenseCategory) = _formState.update { it.copy(category = value) }
@@ -132,7 +139,7 @@ class ExpenseViewModel(
     }
 
     /** Call this when opening the form so isSaved is always clean. */
-    fun resetForm() = _formState.update { ExpenseFormState() }
+    fun resetForm() = _formState.update { ExpenseFormState(isSaved = false) }
 
     fun clearFormError() = _formState.update { it.copy(error = null) }
 

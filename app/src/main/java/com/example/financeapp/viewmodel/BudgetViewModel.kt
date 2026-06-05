@@ -118,11 +118,19 @@ class BudgetViewModel(
 
     /** Pre-populates the form when the user taps edit on an existing budget. */
     fun loadBudgetForEdit(budget: Budget) {
+        _selectedYearMonth.value = YearMonth(budget.month, budget.year)
         _formState.update {
             BudgetFormState(
                 monthlyLimit = budget.monthlyLimit.toString(),
                 category = budget.category
             )
+        }
+    }
+
+    fun loadBudgetForEdit(id: Long) {
+        if (id == 0L) return
+        viewModelScope.launch {
+            budgetDao.getById(id, userId)?.let { loadBudgetForEdit(it) }
         }
     }
 
@@ -158,7 +166,7 @@ class BudgetViewModel(
         }
     }
 
-    fun resetForm() = _formState.update { BudgetFormState() }
+    fun resetForm() = _formState.update { BudgetFormState(isSaved = false) }
     fun clearFormError() = _formState.update { it.copy(error = null) }
 
     // ── Validation ────────────────────────────────────────────────────────

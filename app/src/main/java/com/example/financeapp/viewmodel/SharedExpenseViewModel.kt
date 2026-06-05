@@ -121,6 +121,13 @@ class SharedExpenseViewModel(
         }
     }
 
+    fun loadSharedExpenseForEdit(id: Long) {
+        if (id == 0L) return
+        viewModelScope.launch {
+            sharedExpenseDao.getById(id, userId)?.let { loadSharedExpenseForEdit(it) }
+        }
+    }
+
     fun updateDescription(value: String) = _formState.update { it.copy(description = value, error = null) }
     fun updateTotalAmount(value: String) = _formState.update { it.copy(totalAmount = value, error = null) }
     fun updateCategory(value: ExpenseCategory) = _formState.update { it.copy(category = value) }
@@ -185,24 +192,28 @@ class SharedExpenseViewModel(
             Participant(name = entry.name.trim(), amount = entry.amount.toDouble(), paid = entry.paid)
         }
 
-        val sharedExpense = SharedExpense(
-            id = existingId,
-            userId = userId,
-            description = state.description.trim(),
-            totalAmount = state.totalAmount.toDouble(),
-            category = state.category,
-            participants = participants,
-            settled = false
-        )
-
         viewModelScope.launch {
+            val existingSettled = if (existingId == 0L) {
+                false
+            } else {
+                sharedExpenseDao.getById(existingId, userId)?.settled ?: false
+            }
+            val sharedExpense = SharedExpense(
+                id = existingId,
+                userId = userId,
+                description = state.description.trim(),
+                totalAmount = state.totalAmount.toDouble(),
+                category = state.category,
+                participants = participants,
+                settled = existingSettled
+            )
             if (existingId == 0L) sharedExpenseDao.insert(sharedExpense)
             else sharedExpenseDao.update(sharedExpense)
             _formState.update { it.copy(isSaved = true) }
         }
     }
 
-    fun resetForm() = _formState.update { SharedExpenseFormState() }
+    fun resetForm() = _formState.update { SharedExpenseFormState(isSaved = false) }
     fun clearFormError() = _formState.update { it.copy(error = null) }
 
     // ── Validation ────────────────────────────────────────────────────────
